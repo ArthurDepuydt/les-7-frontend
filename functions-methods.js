@@ -1,7 +1,6 @@
 // Je gaat functies schrijven die we kunnen hergebruiken om sommige emailadressen te checken. Nu zul je gaan merken hoe handig functies kunnen zijn!
 // Je zult hier methoden van het String Object voor nodig hebben, dus pak de paragraaf op EdHub over het String Object er even bij.
 
-
 /* Opdracht  1 */
 // Schrijf een functie genaamd getEmailDomain, die een emailadres verwacht en de domeinnaam teruggeeft. Een domeinnaam is hetgeen dat na het @ in het adres staat
 // ---- Verwachte uitkomsten:
@@ -9,8 +8,11 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+function getEmailDomain(emailadres) {
+  return emailadres.split("@")[1];
+}
 
-
+console.log(getEmailDomain("n.eeken@novi-education.nl"));
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -20,7 +22,19 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfEmail(emailadres) {
+  let type = "";
+  if (emailadres.includes("novi-education.nl")) {
+    type = "Student";
+  } else if (emailadres.includes("novi.nl")) {
+    type = "Medewerker";
+  } else {
+    type = "Extern";
+  }
+  return type;
+}
 
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
 
 /* Opdracht  3 */
 // Schrijf een functie genaamd checkEmailValidity, die een emailadres verwacht en checkt of het emailadres valide is. De functie returned true of false, afhankelijk van de uitkomst.
@@ -34,3 +48,18 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(emailadres) {
+  let type = "";
+
+  if (
+    emailadres.includes("@") &&
+    !emailadres.includes(",") &&
+    emailadres.slice(emailadres.length - 1) != "."
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(checkEmailValidity("n.eeken@novi.nl"));
